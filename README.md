@@ -34,11 +34,17 @@ void testSomething() {
 
     StdSwapper_DeInit();
 }
-
-
 ```
 
+## Installation
+
+Copy `std_swapper.c` and `std_swapper.h` into your source folder. Compile them with the rest of your program (or, more likely, when you compile your tests.)
+
 # Credits
+
+Feel free to use this for any purpose. std_swapper is MIT license. [CuTest](https://cutest.sourceforge.net/), used only in testing this project, is GPL v2. 
+
+
 
 Author: klm127
 Date: 1/23/2023
