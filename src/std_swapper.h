@@ -64,7 +64,6 @@ STD out swapping
 void StdSwapper_SetStdOut(const char * filename);
 
 /* 
-
 Restores stdOut to the console. (Or whatever it was previously.) 
 
 Parameters:
@@ -83,6 +82,20 @@ STD in swapping
 ---------------
 */
 #pragma region stdin_funcs
+
+/* Sets stdin to the given file. The file will be created. */
+void StdSwapper_SetStdIn(const char * filename);
+/* 
+
+Restores stdin to the console. (Or whatever it was previously.) 
+
+Parameters:
+    - short deleteFile: Whether to remove the temporary file. positive for remove, 0 or negative to keep.
+*/
+void StdSwapper_RestoreStdIn(short deleteFile);
+
+/* Sets the default stdin filename for convenience methods. */
+void StdSwapper_SetDefaultStdinFile(const char * newDefaultFilename);
 
 #pragma endregion stdin_funcs
 
