@@ -17,6 +17,15 @@ void testStdoutInitialization(CuTest* tc) {
     StdSwapper_DeInit();
 }
 
+void testOverwriteDefaults(CuTest* tc) {
+    StdSwapper_Init();
+    /* Get a swapper for additional tests. */
+    _Type_StdSwapper* swapper = _getSwapper();
+    StdSwapper_SetDefaultStdoutFile("mytest.txt");
+    CuAssertStrEquals_Msg(tc, "the default stdout filename should be replaced.", "mytest.txt", swapper->default_temp_stdout_filename);
+
+}
+
 void testSTDOut(CuTest *tc) {
     StdSwapper_Init();
 
@@ -53,6 +62,7 @@ void RunAllTests(void)
     CuSuite * suite = CuSuiteNew();
     SUITE_ADD_TEST(suite, testStdoutInitialization);
     SUITE_ADD_TEST(suite, testSTDOut);
+    SUITE_ADD_TEST(suite, testOverwriteDefaults);
     CuSuiteRun(suite);
     CuSuiteSummary(suite, output);
     CuSuiteDetails(suite, output);
