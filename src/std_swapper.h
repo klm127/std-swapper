@@ -100,6 +100,27 @@ void StdSwapper_SetDefaultStdinFile(const char * newDefaultFilename);
 #pragma endregion stdin_funcs
 
 /*
+-----------------------------------
+Combined swapping, convenience calls
+-----------------------------------
+*/
+#pragma region convenience_calls
+
+/*
+    Redirects both output and input. Creates the temporary input file and populates it with the string passed as a parameter. 
+*/
+void StdSwapper_SetAllStdWithInputOf(char * inputForInputFile);
+
+/*
+    Restores both output and input. 
+*/
+void StdSwapper_RestoreAllStd();
+
+
+#pragma endregion convenience_calls
+
+
+/*
 -------------
 Test helpers
 ------------

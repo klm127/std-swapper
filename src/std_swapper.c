@@ -146,6 +146,27 @@ void StdSwapper_SetDefaultStdinFile(const char * newDefaultFilename) {
 }
 
 #pragma endregion stdin_funcs
+
+/*
+-----------------------------------
+Combined swapping, convenience calls
+-----------------------------------
+*/
+#pragma region convenience_calls
+
+void StdSwapper_SetAllStdWithInputOf(char * inputForInputFile) {
+    FILE * tempIn = fopen(swapper.default_temp_stdin_filename, "w");
+    fputs(inputForInputFile, tempIn);
+    fclose(tempIn);
+    StdSwapper_SetStdIn(swapper.default_temp_stdin_filename);
+    StdSwapper_SetStdOut(swapper.default_temp_stdout_filename);
+}
+
+void StdSwapper_RestoreAllStd() {
+    StdSwapper_RestoreStdIn(1);
+    StdSwapper_RestoreStdOut(1);
+}
+#pragma endregion convenience_calls
 /*
 -------------
 Test helpers

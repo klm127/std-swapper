@@ -66,6 +66,21 @@ void testSTDOut(CuTest *tc) {
     StdSwapper_DeInit();
 }
 
+void testConvenienceFuncs(CuTest *tc) {
+    StdSwapper_Init();
+    StdSwapper_SetAllStdWithInputOf("hello\nthere");
+    char first_char = getchar();
+    CuAssertIntEquals_Msg(tc, "it should get the first char", 'h', first_char);
+    char buff1[100];
+    char buff2[100];
+    gets(buff1);
+    gets(buff2);
+    CuAssertStrEquals_Msg(tc, "it should get 'ello'", "ello", buff1);
+    CuAssertStrEquals_Msg(tc, "it should get 'there", "there",buff2);
+    StdSwapper_RestoreAllStd();
+    StdSwapper_DeInit();
+}
+
 void testStdIn(CuTest *tc) {
     StdSwapper_Init();
 
@@ -109,6 +124,7 @@ void RunAllTests(void)
     SUITE_ADD_TEST(suite, testSTDOut);
     SUITE_ADD_TEST(suite, testStdIn);
     SUITE_ADD_TEST(suite, testOverwriteDefaults);
+    SUITE_ADD_TEST(suite, testConvenienceFuncs);
     CuSuiteRun(suite);
     CuSuiteSummary(suite, output);
     CuSuiteDetails(suite, output);
